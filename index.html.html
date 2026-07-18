@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saksham & Aliza 💕</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #e8547a;
+    --rose-light: #fde8ef;
+    --rose-dark: #b53460;
+    --blush: #fdf0f4;
+    --mauve: #8b5676;
+    --gold: #d4a853;
+    --cream: #fefaf7;
+    --text: #2a1a22;
+    --muted: #8a6070;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Floating hearts bg ── */
+  #hearts-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .float-heart {
+    position: absolute;
+    bottom: -60px;
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem 6rem;
+    background: radial-gradient(ellipse at 50% 0%, #fde8ef 0%, var(--cream) 70%);
+  }
+
+  .surprise-badge {
+    display: inline-block;
+    background: var(--rose);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.6rem;
+    animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .hero-names {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    line-height: 1.1;
+    color: var(--text);
+    animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+  }
+  .hero-names .amp {
+    font-style: italic;
+    color: var(--rose);
+    font-size: 0.85em;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+
+  .hero-sub {
+    margin-top: 1.2rem;
+    font-size: 1.05rem;
+    color: var(--muted);
+    animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s both;
+  }
+
+  /* big heart pulse */
+  .big-heart {
+    font-size: 5rem;
+    display: block;
+    margin: 2.2rem auto;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(232,84,122,0.4));
+  }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14%     { transform: scale(1.2); }
+    28%     { transform: scale(1); }
+    42%     { transform: scale(1.12); }
+    56%     { transform: scale(1); }
+  }
+
+  .school-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: white;
+    border: 1.5px solid #f5c6d6;
+    border-radius: 100px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.88rem;
+    color: var(--mauve);
+    margin-top: 0.6rem;
+    font-weight: 500;
+    animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.6s both;
+  }
+
+  /* ── SCROLL DOWN arrow ── */
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(8px); }
+  }
+  .scroll-hint svg { width: 20px; height: 20px; stroke: var(--rose); fill: none; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 0 auto; max-width: 420px;
+    padding: 0 2rem;
+    color: var(--rose);
+    font-size: 1.1rem;
+    position: relative; z-index: 1;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px; background: #f2b8cb;
+  }
+
+  /* ── CARDS SECTION ── */
+  .section {
+    position: relative; z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .section-caption {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid #f5dde5;
+    border-radius: 20px;
+    padding: 1.6rem 1.4rem;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(232,84,122,0.12);
+  }
+  .card-icon { font-size: 2.2rem; margin-bottom: 0.8rem; display: block; }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .card-body { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--rose-light), var(--rose), var(--rose-light));
+    transform: translateX(-50%);
+  }
+  .tl-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    align-items: flex-start;
+  }
+  .tl-item:nth-child(odd) { flex-direction: row; }
+  .tl-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .tl-dot {
+    position: absolute; left: 50%; top: 0.4rem;
+    width: 16px; height: 16px;
+    background: var(--rose);
+    border: 3px solid white;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px #fde8ef;
+    flex-shrink: 0;
+  }
+  .tl-content {
+    flex: 1;
+    background: white;
+    border: 1px solid #f5dde5;
+    border-radius: 16px;
+    padding: 1rem 1.2rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .tl-item:nth-child(odd) .tl-content { margin-right: calc(50% + 1.5rem); }
+  .tl-item:nth-child(even) .tl-content { margin-left: calc(50% + 1.5rem); }
+
+  .tl-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.25rem;
+  }
+  .tl-text { color: var(--muted); }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    position: relative; z-index: 1;
+    background: var(--rose);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    color: white;
+    max-width: 640px;
+    margin: 0 auto 1rem;
+    line-height: 1.5;
+  }
+  .quote-attr {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── WISHES ── */
+  .wishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .wish {
+    background: var(--blush);
+    border-radius: 16px;
+    padding: 1.2rem 1rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+    border-left: 3px solid var(--rose);
+    transition: background 0.2s;
+  }
+  .wish:hover { background: #fad4e2; }
+  .wish strong { display: block; color: var(--text); font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+
+  /* ── CONFETTI BUTTON ── */
+  .cta-section {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 4rem 2rem 5rem;
+  }
+  .cta-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .confetti-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--rose);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 0.9rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    font-family: 'Inter', sans-serif;
+  }
+  .confetti-btn:hover { background: var(--rose-dark); }
+  .confetti-btn:active { transform: scale(0.97); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid #f5dde5;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ── Confetti canvas ── */
+  #confetti-canvas {
+    position: fixed; inset: 0; pointer-events: none; z-index: 999;
+  }
+
+  /* ── Responsive timeline ── */
+  @media (max-width: 600px) {
+    .timeline::before { left: 20px; }
+    .tl-dot { left: 20px; }
+    .tl-item { flex-direction: column !important; padding-left: 50px; }
+    .tl-item .tl-content { margin: 0 !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Floating hearts background -->
+<div id="hearts-bg"></div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <span class="surprise-badge">🎉 Surprise!</span>
+  <h1 class="hero-names">
+    Saksham<br>
+    <span class="amp">&</span><br>
+    Aliza
+  </h1>
+  <p class="hero-sub">Two hearts, one beautiful story beginning… 💕</p>
+  <span class="big-heart">❤️</span>
+  <span class="school-tag">📚 Sukuna Madhyamik Vidhyalaya</span>
+
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<div class="divider">✦ ❤️ ✦</div>
+
+<!-- ── WHY THEY'RE GREAT ── -->
+<section class="section">
+  <h2 class="section-title">What makes them special</h2>
+  <p class="section-caption">Because every great love story has its own magic ✨</p>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icon">🌟</span>
+      <div class="card-title">Saksham Basnet</div>
+      <div class="card-body">The kind of guy who makes everyone around him feel at ease. Loyal, thoughtful, and now — very very lucky! 😄</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌸</span>
+      <div class="card-title">Aliza Basnet</div>
+      <div class="card-body">Radiates warmth wherever she goes. The person who walks into a room and makes it brighter just by being there. ✨</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🤝</span>
+      <div class="card-title">Together</div>
+      <div class="card-body">Same school, shared moments, and now a bond that's just beginning. Here's to every chapter ahead! 📖</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">✦ 🌸 ✦</div>
+
+<!-- ── TIMELINE ── -->
+<section class="section">
+  <h2 class="section-title">Their story, chapter one</h2>
+  <p class="section-caption">Every epic begins with a single moment 🌿</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-label">The Beginning</div>
+        <div class="tl-text">Two students at Sukuna Madhyamik Vidhyalaya, paths crossing every day without knowing what was coming… 🏫</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-label">The Spark</div>
+        <div class="tl-text">That moment when a glance held a little longer than usual and a conversation stretched past midnight. ⚡</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-label">Right Now</div>
+        <div class="tl-text">Saksham + Aliza. Official. Real. And everyone is here for it! 🎉</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-label">What's Ahead</div>
+        <div class="tl-text">Laughter, adventures, study sessions, life — written together, one day at a time. 🌅</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE ── -->
+<div class="quote-section">
+  <p class="quote-text">"You know you're in love when you can't fall asleep because reality is finally better than your dreams."</p>
+  <div class="quote-attr">— Dr. Seuss</div>
+</div>
+
+<!-- ── WISHES ── -->
+<section class="section">
+  <h2 class="section-title">Wishes for you both 🌷</h2>
+  <p class="section-caption">From someone who cares a lot (and maybe embarrassed you with this website)</p>
+  <div class="wishes-grid">
+    <div class="wish"><strong>💬 Communication</strong>Always say what you feel — the awkward conversations are always worth having.</div>
+    <div class="wish"><strong>😂 Laughter</strong>Find something funny in every day together, even the hard ones. Especially the hard ones.</div>
+    <div class="wish"><strong>📚 Growth</strong>Push each other to be better — in school, in life, and in everything in between.</div>
+    <div class="wish"><strong>🌧 Patience</strong>Be gentle with each other. Everyone has rough days. Show up anyway.</div>
+    <div class="wish"><strong>🎉 Adventures</strong>Try new things together. Even small ones count — a new café, a new road, a new playlist.</div>
+    <div class="wish"><strong>💫 Respect</strong>Cheer each other's dreams as loudly as you cheer each other on exam results.</div>
+  </div>
+</section>
+
+<div class="divider">✦ 🎊 ✦</div>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <p class="cta-label">Ready to celebrate?</p>
+  <h2 class="section-title" style="margin-bottom:1.5rem;">Click the button, Saksham! 🎉</h2>
+  <button class="confetti-btn" onclick="launchConfetti()">
+    🎊 Celebrate Saksham & Aliza!
+  </button>
+</section>
+
+<footer>
+  Made with ❤️ to surprise Saksham Basnet on his beautiful new chapter &nbsp;•&nbsp; Sukuna Madhyamik Vidhyalaya
+</footer>
+
+<script>
+  /* ── Floating hearts ── */
+  const heartsBg = document.getElementById('hearts-bg');
+  const heartEmojis = ['❤️','💕','💗','💓','💞','🌸','✨','💖'];
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+    h.className = 'float-heart';
+    h.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (Math.random() * 1.2 + 0.7) + 'rem';
+    h.style.animationDuration = (Math.random() * 12 + 8) + 's';
+    h.style.animationDelay = (Math.random() * 10) + 's';
+    heartsBg.appendChild(h);
+  }
+
+  /* ── Confetti ── */
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animating = false;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const COLORS = ['#e8547a','#f5a4bb','#d4a853','#a78bfa','#34d399','#fb923c','#60a5fa'];
+
+  function launchConfetti() {
+    particles = [];
+    for (let i = 0; i < 200; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: -20,
+        vx: (Math.random() - 0.5) * 4,
+        vy: Math.random() * 5 + 2,
+        rot: Math.random() * 360,
+        rotV: (Math.random() - 0.5) * 8,
+        w: Math.random() * 12 + 6,
+        h: Math.random() * 6 + 4,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        life: 1,
+      });
+    }
+    if (!animating) {
+      animating = true;
+      requestAnimationFrame(drawConfetti);
+    }
+  }
+
+  function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    for (const p of particles) {
+      p.x += p.vx; p.y += p.vy;
+      p.rot += p.rotV;
+      p.vy += 0.15;
+      p.life -= 0.008;
+      if (p.life > 0 && p.y < canvas.height + 30) {
+        alive = true;
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rot * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+    }
+    if (alive) requestAnimationFrame(drawConfetti);
+    else { animating = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+  }
+
+  /* ── Scroll-triggered animations ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .tl-item, .wish').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  /* ── Auto-launch on load ── */
+  setTimeout(launchConfetti, 1000);
+</script>
+</body>
+</html>
